@@ -18,6 +18,9 @@ export class PostController extends BaseController {
       .put('/:commentId/downvote', this.downVote)
       .delete('/:commentId', this.delete)
   }
+  getAllCommentsOnPost(arg0, getAllCommentsOnPost) {
+    throw new Error("Method not implemented.")
+  }
   async downVote(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
