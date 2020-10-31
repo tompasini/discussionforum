@@ -3,6 +3,7 @@ import { audience, clientId, domain } from '../AuthConfig.js'
 import { api } from './AxiosService.js'
 import { profileService } from './ProfileService.js'
 
+// @ts-ignore
 export const AuthService = Auth0Provider.initialize({
   domain,
   clientId,
