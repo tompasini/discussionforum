@@ -1,7 +1,24 @@
 import { dbContext } from "../db/DbContext"
+import PostVote from "../models/PostVote"
 import { BadRequest } from "../utils/Errors"
 
 class PostService {
+  async deleteVote(voteId, currentUserLoggedIn) {
+    let exists = await dbContext.PostVotes.findById(voteId)
+
+    if (!exists) {
+      throw new BadRequest("Not a valid post/vote id")
+    }
+
+    // @ts-ignore
+    let creatorId = exists._doc.user
+
+    if (creatorId != currentUserLoggedIn) {
+      throw new BadRequest('You are not the voter.')
+    }
+
+    return await dbContext.PostVotes.findByIdAndDelete(voteId)
+  }
 
 
   async upVote(postId, body, currentUserLoggedIn) {
@@ -21,7 +38,7 @@ class PostService {
     if (voteCheck.length > 0) {
       throw new BadRequest('You can only upvote a post once.')
     } else {
-      await dbContext.PostVotes.create(vote)
+      let PostVote = await dbContext.PostVotes.create(vote)
     }
 
 
@@ -32,7 +49,9 @@ class PostService {
     }
     body.upVote++
 
-    return await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
+    await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
+    return PostVote
+    //need to find way to send back id for PostVote relationship
 
   }
 
