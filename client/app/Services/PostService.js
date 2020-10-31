@@ -12,6 +12,12 @@ class PostService {
     console.log(res.data)
     ProxyState.posts = res.data.map(p => new Post(p))
   }
+
+  async create(data){
+    let res = await postsApi.post("", data)
+    console.log(res.data)
+    ProxyState.posts = [...ProxyState.posts, new Post(res.data)]
+  }
 }
 
 export const postService = new PostService()

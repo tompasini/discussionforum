@@ -36,31 +36,15 @@
 
 
     <main class="container-fluid">
-
-
-
-
-        <div class="row my-3">
-            <div id="posts" class="col-6">
-
-            </div>
-            <!-- <div class="col-5">
-
-
-                <div class="card p-2 skeleton-loader">
-                    <div class="card-title p-2">
-                        <div class="d-flex align-items-center">
-                            <div class="skeleton-loader avatar"></div>
-                            <div class="skeleton-loader text mx-2"></div>
-                        </div>
-                    </div>
-                    <div class="card-body border-top">
-                        <div class="skeleton-loader text block"></div>
-                        <div class="skeleton-loader text block"></div>
-                        <div class="skeleton-loader text"></div>
-                    </div>
-                </div>
-            </div> -->
+        <div id="postHeader" class="row post-header"></div>
+        <form onsubmit="app.postController.create(event)">
+            <input class="input" id="postTitle" type="text" name="postTitle">
+            <input class="input" id="postQuestion" type="text" name="postQuestion">
+            <button type="submit" class="btn btn-outline-success btn-lg">Create Post</button>
+        </form>
+        <!-- posts will be drawn here -->
+        <div id="posts" class="posts">
+           
         </div>
     </main>
 

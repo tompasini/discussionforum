@@ -10,10 +10,24 @@ export default class Post {
 
   get Template() {
     return /*html*/`
-        <div class="border rounded shadow-lg">
-        <h3>${this.title}</h3>
-        <p>${this.question}</p>
+      <div class="row post-row">
+        <!-- img avatar whatevs -->
+        <div class="col-2 post-img">
+          <img id="postImg" src="http://placehold.it/50" alt="">
         </div>
+        <!-- title -->
+        <div class="col-6 post-title">
+          <h5 id="postTitle">${this.title}</h5>
+        </div>
+        <!-- up vote -->
+        <div class="col-2 post-vote">
+          <span id="postUpVote">${this.upVote}&plus;</span>
+        </div>
+        <!-- down vote -->
+        <div class="col-2 post-vote">
+          <span id="postDownVote">${this.downVote}&minus;</span>
+        </div>
+      </div>
       `;
   }
 }
