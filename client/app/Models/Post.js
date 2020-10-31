@@ -27,6 +27,14 @@ export default class Post {
         <div class="col-2 post-vote">
           <span id="postDownVote">${this.downVote}&minus;</span>
         </div>
+        <!-- down vote -->
+        <div class="col-2 post-vote">
+          <span onclick="app.postController.delete('${this.id}')">&times;</span>
+        </div>
+        <!-- down vote -->
+        <div class="col-2 post-vote">
+          <span onclick="app.postController.edit('${this.id}')">edit</span>
+        </div>
       </div>
       `;
   }

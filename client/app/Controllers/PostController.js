@@ -25,17 +25,28 @@ export default class PostController {
   
   create(e) {
     e.preventDefault()
-    let form = e.target
-    let postQuestion = form.postQuestion
-    let postTitle = form.postTitle
-    let data = {}
-    data.postTitle = postTitle
-    data.postQuestion = postQuestion
     try {
       // debugger
-      postService.create(data)
+      postService.create({title: e.target.postTitle.value, question: e.target.postQuestion.value})
     } catch (error) {
       console.error(error);
     }
   }
+
+  delete(id) {
+    try {
+      postService.delete(id)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  edit(id, editData) {
+    try {
+      postService.edit(id, editData)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 }
