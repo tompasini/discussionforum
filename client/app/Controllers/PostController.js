@@ -32,6 +32,7 @@ export default class PostController {
     data.postTitle = postTitle
     data.postQuestion = postQuestion
     try {
+      // debugger
       postService.create(data)
     } catch (error) {
       console.error(error);

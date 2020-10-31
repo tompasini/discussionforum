@@ -4,7 +4,7 @@ import BaseController from "../utils/BaseController";
 
 export class ProfilesController extends BaseController {
   constructor() {
-    super("profile");
+    super("api/profile");
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)

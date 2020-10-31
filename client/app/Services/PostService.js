@@ -21,3 +21,5 @@ class PostService {
 }
 
 export const postService = new PostService()
+
+export default postService;
