@@ -1,4 +1,5 @@
 import Post from "./Models/Post.js"
+import Comment from "./Models/Comment.js"
 import { EventEmitter } from "./Utils/EventEmitter.js"
 import { isValidProp } from "./Utils/isValidProp.js"
 

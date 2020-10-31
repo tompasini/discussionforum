@@ -34,7 +34,7 @@ export default class CommentService {
 
   async delete(id) {
     // validate current user is creator
-    let post = ProxyState.comments.find(c => c.id == id)
+    let comment = ProxyState.comments.find(c => c.id == id)
     let loggedInUserId = ProxyState.profile._id
     if (loggedInUserId != comment.creatorId) {
       throw 'You are not the creator of this post.'
