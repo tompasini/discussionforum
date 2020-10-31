@@ -16,13 +16,14 @@ export class PostController extends BaseController {
       .put('/:postId/upvote', this.upVote)
       .put('/:postId/downvote', this.downVote)
       .delete('/:postId', this.delete)
-      .delete('/:voteId', this.deletePostVote)
+      .delete('/removevote/:voteId', this.deletePostVote)
   }
   async deletePostVote(req, res, next) {
     try {
-
+      let currentUserLoggedIn = req.userInfo.id
+      res.send(await postService.deleteVote(req.params.voteId, currentUserLoggedIn))
     } catch (error) {
-
+      next(error)
     }
   }
   async getOne(req, res, next) {
