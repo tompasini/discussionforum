@@ -23,11 +23,11 @@ export default class Post {
         </div>
         <!-- up vote -->
         <div class="col-2 post-vote">
-          <span id="postUpVote">${this.upVote}&plus;</span>
+          <span id="postUpVote">&plus;${this.upVote}</span>
         </div>
         <!-- down vote -->
         <div class="col-2 post-vote">
-          <span id="postDownVote">${this.downVote}&minus;</span>
+          <span id="postDownVote">&minus;${this.downVote}</span>
         </div>
         <!-- down vote -->
         <div class="col-2 post-vote">

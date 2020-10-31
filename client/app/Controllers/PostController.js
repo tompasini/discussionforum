@@ -3,21 +3,29 @@ import { postService } from "../Services/PostService.js"
 
 
 function _draw() {
-  let template = ''
+  let template = /*html*/ `
+    <!-- form to create new posts -->
+    <div id="postHeader" class="row post-header">
+        <form class="col-4" onsubmit="app.postController.create(event)">
+            <input class="form-control input" id="postTitle" type="text" name="postTitle" placeholder="Create new post..." required>
+            <input class="form-control input" id="postQuestion" type="text" name="postQuestion" placeholder="Add question..." required>
+            <button class="btn btn-outline-success btn-lg btn-block" type="submit">Create Post</button>
+        </form>
+    </div>
+  `;
   ProxyState.posts.forEach(p => template += p.Template)
   document.getElementById('posts').innerHTML = template
 }
 
 export default class PostController {
   constructor() {
-    console.log("hello from post controller")
-    this.getPosts()
+    this.getAll()
     ProxyState.on("posts", _draw)
   }
 
-  getPosts() {
+  getAll() {
     try {
-      postService.getPosts()
+      postService.getAll()
     } catch (error) {
       console.error(error);
     }
@@ -35,17 +43,17 @@ export default class PostController {
     }
   }
 
-  delete(id) {
+  edit(id, editData) {
     try {
-      postService.delete(id)
+      postService.edit(id, editData)
     } catch (error) {
       console.error(error);
     }
   }
 
-  edit(id, editData) {
+  delete(id) {
     try {
-      postService.edit(id, editData)
+      postService.delete(id)
     } catch (error) {
       console.error(error);
     }

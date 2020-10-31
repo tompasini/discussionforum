@@ -11,6 +11,9 @@ class AppState extends EventEmitter {
   /** @type {Post[]} */
   posts = []
 
+/** @type {Comment[]} */
+  comments = []
+
 }
 
 export const ProxyState = new Proxy(new AppState(), {
