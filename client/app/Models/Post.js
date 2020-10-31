@@ -10,7 +10,10 @@ export default class Post {
 
   get Template() {
     return /*html*/`
-    <div class="">
+    <div class="container-fluid">
+    <div class="row">
+    
+    </div>
   
     </div>
       `;
