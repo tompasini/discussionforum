@@ -9,12 +9,28 @@ export class PostController extends BaseController {
     super("api/posts")
     this.router
       .get('', this.getAll)
+      .get('/:postId', this.getOne)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .put('/:postId', this.edit)
       .put('/:postId/upvote', this.upVote)
       .put('/:postId/downvote', this.downVote)
       .delete('/:postId', this.delete)
+      .delete('/:voteId', this.deletePostVote)
+  }
+  async deletePostVote(req, res, next) {
+    try {
+
+    } catch (error) {
+
+    }
+  }
+  async getOne(req, res, next) {
+    try {
+      res.send(await postService.findById(req.params.postId))
+    } catch (error) {
+      next(error)
+    }
   }
   async downVote(req, res, next) {
     try {
@@ -38,8 +54,7 @@ export class PostController extends BaseController {
   async delete(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
-      let postCreator = req.body.creatorId
-      res.send(await postService.delete(req.params.postId, currentUserLoggedIn, postCreator))
+      res.send(await postService.delete(req.params.postId, currentUserLoggedIn))
     } catch (error) {
       next(error)
     }

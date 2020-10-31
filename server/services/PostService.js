@@ -11,21 +11,26 @@ class PostService {
       throw new BadRequest("Not a valid id")
     }
 
-    let upVote = body.upVote
     // @ts-ignore
     body = exists._doc
 
-    if ((upVote - body.upVote) != 1) {
+    let voteCheck = await dbContext.PostVotes.find({ user: currentUserLoggedIn, post: postId })
+
+    let vote = { user: currentUserLoggedIn, post: postId }
+
+    if (voteCheck.length > 0) {
       throw new BadRequest('You can only upvote a post once.')
+    } else {
+      await dbContext.PostVotes.create(vote)
     }
 
-    body.upVote = upVote
 
     let postUser = body.creatorId
 
     if (postUser == currentUserLoggedIn) {
       throw new BadRequest('You cannot upvote your own post!')
     }
+    body.upVote++
 
     return await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
 
@@ -38,15 +43,18 @@ class PostService {
       throw new BadRequest("Not a valid id")
     }
 
-    let downVote = body.downVote
     // @ts-ignore
     body = exists._doc
 
-    if ((downVote - body.downVote) != 1) {
-      throw new BadRequest('You can only downvote a post once.')
-    }
+    let voteCheck = await dbContext.PostVotes.find({ user: currentUserLoggedIn, post: postId })
 
-    body.downVote = downVote
+    let vote = { user: currentUserLoggedIn, post: postId }
+
+    if (voteCheck.length > 0) {
+      throw new BadRequest('You can only downvote a post once.')
+    } else {
+      await dbContext.PostVotes.create(vote)
+    }
 
     let postUser = body.creatorId
 
@@ -54,20 +62,24 @@ class PostService {
       throw new BadRequest('You cannot downvote your own post!')
     }
 
+    body.downVote++
+
     return await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
 
   }
 
 
 
-  async delete(postId, currentUserLoggedIn, postCreator) {
+  async delete(postId, currentUserLoggedIn) {
     let exists = await this.findById(postId)
 
     if (!exists) {
       throw new BadRequest("Not a valid id")
     }
 
-    if (postCreator != currentUserLoggedIn) {
+    let creatorId = exists._doc.creatorId
+
+    if (creatorId != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this post.')
     }
 
@@ -119,10 +131,6 @@ class PostService {
   async findById(id) {
     return await dbContext.Posts.findById(id)
   }
-
-  // async validateUser(currentUser)) {
-  //   currentUser == 
-  // }
 }
 
 export const postService = new PostService()

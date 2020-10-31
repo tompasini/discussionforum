@@ -19,9 +19,9 @@ export class CommentController extends BaseController {
   }
   async getAllCommentsOnPost(req, res, next) {
     try {
-
+      res.send(await commentService.getAllCommentsOnPost(req.params.postId))
     } catch (error) {
-
+      next(error)
     }
   }
   async downVote(req, res, next) {
@@ -42,16 +42,15 @@ export class CommentController extends BaseController {
     }
   }
 
-
   async delete(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
-      let commentCreator = req.body.creatorId //need to figure out why this is undefined. Not in body.
-      res.send(await commentService.delete(req.params.commentId, currentUserLoggedIn, commentCreator))
+      res.send(await commentService.delete(req.params.commentId, currentUserLoggedIn))
     } catch (error) {
       next(error)
     }
   }
+
   async edit(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id

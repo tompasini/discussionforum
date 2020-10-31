@@ -2,6 +2,9 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
 
 class CommentService {
+  async getAllCommentsOnPost(postId) {
+    return await dbContext.Comments.find({ post: postId }).populate("post")
+  }
   async upVote(commentId, body, currentUserLoggedIn) {
     let exists = await this.findById(commentId)
 
@@ -58,14 +61,16 @@ class CommentService {
 
 
 
-  async delete(commentId, currentUserLoggedIn, commentCreator) {
+  async delete(commentId, currentUserLoggedIn) {
     let exists = await this.findById(commentId)
 
     if (!exists) {
       throw new BadRequest("Not a valid id")
     }
 
-    if (commentCreator != currentUserLoggedIn) {
+    let creatorId = exists._doc.creatorId
+
+    if (creatorId != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this comment.')
     }
 
