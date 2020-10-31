@@ -8,9 +8,6 @@ class AppState extends EventEmitter {
 
   profile = {}
 
-  /** @type {Value[]} */
-  values = []
-
   /** @type {Post[]} */
   posts = []
 
