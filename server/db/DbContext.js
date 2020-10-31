@@ -6,7 +6,6 @@ import CommentSchema from "../models/Comment"
 import PostVoteSchema from "../models/PostVote"
 
 class DbContext {
-  Values = mongoose.model("Value", ValueSchema);
   Profile = mongoose.model("Profiles", ProfileSchema);
 
   Posts = mongoose.model("Posts", PostSchema);

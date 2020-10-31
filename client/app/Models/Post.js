@@ -6,6 +6,7 @@ export default class Post {
     this.question = data.question
     this.upVote = data.upVote
     this.downVote = data.downVote
+    this.creatorId = data.creatorId
   }
 
   get Template() {
@@ -18,6 +19,7 @@ export default class Post {
         <!-- title -->
         <div class="col-6 post-title">
           <h5 id="postTitle">${this.title}</h5>
+          <h6 id="postUser"></h6>
         </div>
         <!-- up vote -->
         <div class="col-2 post-vote">

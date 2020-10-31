@@ -26,8 +26,10 @@ export default class PostController {
   create(e) {
     e.preventDefault()
     try {
-      // debugger
-      postService.create({title: e.target.postTitle.value, question: e.target.postQuestion.value})
+      postService.create({
+        title: e.target.postTitle.value, 
+        question: e.target.postQuestion.value
+      })
     } catch (error) {
       console.error(error);
     }
