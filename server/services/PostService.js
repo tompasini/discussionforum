@@ -34,7 +34,6 @@ class PostService {
     if (postUser != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this post.')
     }
-
     return await dbContext.Posts.findByIdAndUpdate(postId, reqBody, { new: true })
   }
 
@@ -47,7 +46,6 @@ class PostService {
     if (creatorId != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this post.')
     }
-
     return await dbContext.Posts.findByIdAndDelete(postId)
   }
 
@@ -60,7 +58,6 @@ class PostService {
     if (creatorId != currentUserLoggedIn) {
       throw new BadRequest('You are not the voter.')
     }
-
     return await dbContext.PostVotes.findByIdAndDelete(voteId)
   }
 
@@ -87,8 +84,7 @@ class PostService {
 
     await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
     return PostVote
-    //need to find way to send back id for PostVote relationship
-
+    // NOTE need to find way to send back id for PostVote relationship
   }
 
   async downVote(postId, body, currentUserLoggedIn) {

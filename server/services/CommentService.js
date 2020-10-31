@@ -1,5 +1,7 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest } from "../utils/Errors"
+import Comment from "../models/Comment"
+
 
 class CommentService {
 
@@ -33,7 +35,6 @@ class CommentService {
     if (commentUser != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this comment.')
     }
-
     return await dbContext.Comments.findByIdAndUpdate(commentId, reqBody, { new: true })
   }
 
@@ -55,9 +56,7 @@ class CommentService {
     if (commentUser == currentUserLoggedIn) {
       throw new BadRequest('You cannot upvote your own comment!')
     }
-
     return await dbContext.Comments.findByIdAndUpdate(commentId, body, { new: true })
-
   }
 
   async downVote(commentId, body, currentUserLoggedIn) {
@@ -71,14 +70,13 @@ class CommentService {
     if ((downVote - body.downVote) != 1) {
       throw new BadRequest('You can only downvote a comment once.')
     }
-
+    
     // REVIEW does this body.downVote not need to be assigned until after validating the user is not the creator?
     body.downVote = downVote
     let commentUser = body.creatorId
     if (commentUser == currentUserLoggedIn) {
       throw new BadRequest('You cannot downvote your own comment!')
     }
-
     return await dbContext.Comments.findByIdAndUpdate(commentId, body, { new: true })
   }
 
@@ -91,7 +89,6 @@ class CommentService {
     if (creatorId != currentUserLoggedIn) {
       throw new BadRequest('You are not the creator of this comment.')
     }
-
     return await dbContext.Comments.findByIdAndDelete(commentId)
   }
   

@@ -13,7 +13,7 @@ export default class Post {
     return /*html*/`
       <div class="row post-row">
         <!-- img avatar whatevs -->
-        <div class="col-2 post-img">
+        <div class="col-1 post-img">
           <img id="postImg" src="http://placehold.it/50" alt="">
         </div>
         <!-- title -->
@@ -22,19 +22,19 @@ export default class Post {
           <h6 id="postUser"></h6>
         </div>
         <!-- up vote -->
-        <div class="col-2 post-vote">
+        <div class="col-1 post-vote">
           <span id="postUpVote">&plus;${this.upVote}</span>
         </div>
         <!-- down vote -->
-        <div class="col-2 post-vote">
+        <div class="col-1 post-vote">
           <span id="postDownVote">&minus;${this.downVote}</span>
         </div>
         <!-- down vote -->
-        <div class="col-2 post-vote">
+        <div class="col-1 post-delete">
           <span onclick="app.postController.delete('${this.id}')">&times;</span>
         </div>
         <!-- down vote -->
-        <div class="col-2 post-vote">
+        <div class="col-2 post-edit">
           <span onclick="app.postController.edit('${this.id}')">edit</span>
         </div>
       </div>

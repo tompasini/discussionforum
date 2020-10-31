@@ -1,7 +1,9 @@
 
 
 /* NOTE what classes can we ommit from this file? */
-/* FIXME looks like the body background image does not fully cover the vew height as the list of posts grows*/
+/* FIXME looks like the body background image does not fully cover the view height as the list of posts grows
+probably needs fixed value of some kind
+*/
 
 
 body {
