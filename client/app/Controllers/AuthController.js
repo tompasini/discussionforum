@@ -3,6 +3,7 @@ import { AuthService } from "../Services/AuthService.js";
 
 function drawUser() {
   let user = ProxyState.user;
+  console.log(user)
   let userAvatar = avatarTemplate(user);
   let button = authButton(user);
 

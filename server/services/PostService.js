@@ -50,9 +50,9 @@ class PostService {
 
     let postUser = body.creatorId
 
-    // if (postUser == currentUserLoggedIn) {
-    //   throw new BadRequest('You cannot downvote your own post!')
-    // }
+    if (postUser == currentUserLoggedIn) {
+      throw new BadRequest('You cannot downvote your own post!')
+    }
 
     return await dbContext.Posts.findByIdAndUpdate(postId, body, { new: true })
 

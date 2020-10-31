@@ -8,7 +8,7 @@ const Comment = new Schema(
     upVote: { type: Number, required: true, default: 0 },
     downVote: { type: Number, required: true, default: 0 },
     imgUrl: { type: String, required: false },
-    post: { type: ObjectId, ref: "Post", required: true },
+    post: { type: ObjectId, ref: "Posts", required: true },
     creatorId: { type: String, required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }

@@ -2,7 +2,6 @@ import express, { raw } from "express"
 import BaseController from "../utils/BaseController"
 import { postService } from "../services/PostService"
 import { Auth0Provider } from "@bcwdev/auth0provider"
-import { dbContext } from "../db/DbContext"
 
 
 export class PostController extends BaseController {

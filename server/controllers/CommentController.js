@@ -2,10 +2,9 @@ import express, { raw } from "express"
 import BaseController from "../utils/BaseController"
 import { commentService } from "../services/CommentService"
 import { Auth0Provider } from "@bcwdev/auth0provider"
-import { dbContext } from "../db/DbContext"
 
 
-export class PostController extends BaseController {
+export class CommentController extends BaseController {
   constructor() {
     super("api/comments")
     this.router
@@ -19,7 +18,11 @@ export class PostController extends BaseController {
       .delete('/:commentId', this.delete)
   }
   async getAllCommentsOnPost(req, res, next) {
-    throw new Error("Method not implemented.")
+    try {
+
+    } catch (error) {
+
+    }
   }
   async downVote(req, res, next) {
     try {
@@ -43,7 +46,7 @@ export class PostController extends BaseController {
   async delete(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
-      let commentCreator = req.body.creatorId
+      let commentCreator = req.body.creatorId //need to figure out why this is undefined. Not in body.
       res.send(await commentService.delete(req.params.commentId, currentUserLoggedIn, commentCreator))
     } catch (error) {
       next(error)
