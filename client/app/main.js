@@ -1,12 +1,11 @@
 import { AuthController } from "./Controllers/AuthController.js";
 import PostController from "./Controllers/PostController.js";
-import ValuesController from "./Controllers/ValuesController.js";
+import CommentController from "./Controllers/CommentController.js";
 
 class App {
   authController = new AuthController();
-  valuesController = new ValuesController();
-
   postController = new PostController();
+  commentController = new CommentController();
 }
 
 window["app"] = new App();

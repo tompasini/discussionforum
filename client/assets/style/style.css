@@ -1,3 +1,11 @@
+
+
+/* NOTE what classes can we ommit from this file? */
+/* FIXME looks like the body background image does not fully cover the view height as the list of posts grows
+probably needs fixed value of some kind
+*/
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -73,13 +81,13 @@ a {
 }
 
 .posts{
-/*   border-style: solid; */
   background: rgba(0,0,0,0.6);
   color: #04f82d ;
   margin: 15vh auto;
 }
 
-/* .post-header{
+/* 
+.post-header{
 
 }
 
@@ -89,7 +97,15 @@ a {
 
 .post-vote{
 
-} */
+} 
+
+border on all sides can be done with shorthand
+
+e.g., 
+
+border: 1px solid #04f82d
+
+*/
 
 .post-row{
   align-items: center;
@@ -106,4 +122,3 @@ margin: 0 auto;
 
 
 /* NOTE  This is our Post Template styles */
-

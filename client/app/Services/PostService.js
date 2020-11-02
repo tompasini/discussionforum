@@ -1,6 +1,7 @@
 import { ProxyState } from "../AppState.js"
 import Post from "../Models/Post.js"
 import { postsApi } from "../Services/AxiosService.js"
+import { api } from './AxiosService.js'
 
 class PostService {
   constructor() {
@@ -14,7 +15,7 @@ class PostService {
   }
 
   async create(data){
-    let res = await postsApi.post("", data)
+    let res = await api.post("/posts", data)
     console.log(res.data)
     ProxyState.posts = [...ProxyState.posts, new Post(res.data)]
   }

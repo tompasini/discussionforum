@@ -28,11 +28,11 @@ export default class PostController {
     let form = e.target
     let postQuestion = form.postQuestion
     let postTitle = form.postTitle
+    console.log(postQuestion.value)
     let data = {}
-    data.postTitle = postTitle
-    data.postQuestion = postQuestion
+    data.title = postTitle.value
+    data.question = postQuestion.value
     try {
-      // debugger
       postService.create(data)
     } catch (error) {
       console.error(error);

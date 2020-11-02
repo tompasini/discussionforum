@@ -17,6 +17,7 @@ export class CommentController extends BaseController {
       .put('/:commentId/downvote', this.downVote)
       .delete('/:commentId', this.delete)
   }
+
   async getAllCommentsOnPost(req, res, next) {
     try {
       res.send(await commentService.getAllCommentsOnPost(req.params.postId))
@@ -24,19 +25,28 @@ export class CommentController extends BaseController {
       next(error)
     }
   }
-  async downVote(req, res, next) {
+  
+  async getAll(req, res, next) {
     try {
-      let currentUserLoggedIn = req.userInfo.id
-      res.send(await commentService.downVote(req.params.commentId, req.body, currentUserLoggedIn))
+      res.send(await commentService.getAll())
     } catch (error) {
       next(error)
     }
   }
 
-  async upVote(req, res, next) {
+  async create(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      res.send(await commentService.create(req.body))
+    } catch (error) {
+      next(error)
+    }
+  }
+  
+  async edit(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
-      res.send(await commentService.upVote(req.params.commentId, req.body, currentUserLoggedIn))
+      res.send(await commentService.edit(req.params.commentId, req.body, currentUserLoggedIn))
     } catch (error) {
       next(error)
     }
@@ -51,28 +61,22 @@ export class CommentController extends BaseController {
     }
   }
 
-  async edit(req, res, next) {
+  async upVote(req, res, next) {
     try {
       let currentUserLoggedIn = req.userInfo.id
-      res.send(await commentService.edit(req.params.commentId, req.body, currentUserLoggedIn))
+      res.send(await commentService.upVote(req.params.commentId, req.body, currentUserLoggedIn))
     } catch (error) {
       next(error)
     }
   }
 
-  async create(req, res, next) {
+  async downVote(req, res, next) {
     try {
-      req.body.creatorId = req.userInfo.id
-      res.send(await commentService.create(req.body))
+      let currentUserLoggedIn = req.userInfo.id
+      res.send(await commentService.downVote(req.params.commentId, req.body, currentUserLoggedIn))
     } catch (error) {
       next(error)
     }
   }
-  async getAll(req, res, next) {
-    try {
-      res.send(await commentService.getAll())
-    } catch (error) {
-      next(error)
-    }
-  }
+
 }
