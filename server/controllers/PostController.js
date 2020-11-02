@@ -70,6 +70,7 @@ export class PostController extends BaseController {
   }
 
   async create(req, res, next) {
+    //TODO Need to include username in post. Or just do this in front-end.
     try {
       req.body.creatorId = req.userInfo.id
       res.send(await postService.create(req.body))
