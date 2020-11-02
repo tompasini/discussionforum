@@ -36,12 +36,24 @@
 
 
     <main class="container-fluid">
-
-
+        <div id="postHeader" class="row post-header"></div>
+        <form onsubmit="app.postController.create(event)">
+            <input class="input" id="postTitle" type="text" name="postTitle" placeholder="Create new post...">
+            <input class="input" id="postQuestion" type="text" name="postQuestion" placeholder="Add question...">
+            <button type="submit" class="btn btn-outline-success btn-lg">Create Post</button>
+        </form>
         <!-- posts will be drawn here -->
-        <div id="posts" class="posts"></div>
+        <div id="posts" class="posts">
+           
+        </div>
     </main>
 
+
+
+
+
+
+    </main>
 
 
 
